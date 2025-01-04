@@ -8,5 +8,10 @@
   "keywords": [],
   "author": "Hydroper <hydroperfox@gmail.com>",
   "license": "Apache-2.0",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
 }
