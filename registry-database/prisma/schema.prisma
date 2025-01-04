@@ -14,10 +14,21 @@ datasource db {
 }
 
 model User {
+  id                          BigInt              @id @default(autoincrement())
+  registeredAt                DateTime            @default(now())
+  fullName                    String
+  githubAccessToken           String
+  receivedMaintenanceInvites  MaintenanceInvite[] @relation("Invitee")
+  sentMaintenanceInvites      MaintenanceInvite[] @relation("FromMaintainer") 
+  packages                    Package[]
+}
+
+model MaintenanceInvite {
   id                  BigInt          @id @default(autoincrement())
-  registeredAt        DateTime        @default(now())
-  fullName            String
-  githubAccessToken   String
+  invitee             User            @relation("Invitee", fields: [inviteeId], references: [id])
+  inviteeId           BigInt
+  fromMaintainer      User            @relation("FromMaintainer", fields: [fromMaintainerId], references: [id])
+  fromMaintainerId    BigInt
 }
 
 // Packages are optional namespaces:
@@ -29,3 +40,22 @@ model User {
 // - !{com,net,org,me} (for example, prisma is a package and prisma.util is a subpackage of prisma)
 //
 // Subnamespaces also work for each of the above examples, such as `com.microsoft.azure.util`.
+
+model Package {
+  id                  BigInt            @id @default(autoincrement())
+  name                String
+  maintainers         User[]
+  versions            PackageVersion[]
+}
+
+model PackageVersion {
+  id                  BigInt                   @id @default(autoincrement())
+  versionNumber       String
+  publishedAt         DateTime                 @default(now())
+  zip                 Bytes
+  package             Package                  @relation(fields: [packageId], references: [id])
+  packageId           BigInt
+  dependencies        PackageVersion[]         @relation("Dependency")
+  dependents          PackageVersion[]         @relation("Dependency")
+  yanked              Boolean                  @default(false)
+}
