@@ -8,5 +8,8 @@
   "keywords": [],
   "author": "Hydroper <hydroperfox@gmail.com>",
   "license": "Apache-2.0",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "prisma": "^6.1.0"
+  }
 }
