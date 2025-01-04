@@ -12,3 +12,20 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id                  BigInt          @id @default(autoincrement())
+  registeredAt        DateTime        @default(now())
+  fullName            String
+  githubAccessToken   String
+}
+
+// Packages are optional namespaces:
+//
+// - com.XXXXX
+// - net.XXXXX
+// - org.XXXXX
+// - me.XXXXX
+// - !{com,net,org,me} (for example, prisma is a package and prisma.util is a subpackage of prisma)
+//
+// Subnamespaces also work for each of the above examples, such as `com.microsoft.azure.util`.
