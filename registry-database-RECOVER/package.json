@@ -2,7 +2,6 @@
   "name": "com.whackengine.registry-database",
   "version": "1.0.0",
   "main": "src/index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,9 +9,7 @@
   "author": "Hydroper <hydroperfox@gmail.com>",
   "license": "Apache-2.0",
   "description": "",
-  "dependencies": {
-    "dotenv": "^16.4.7",
-    "knex": "^3.1.0",
-    "mysql": "^2.18.1"
+  "devDependencies": {
+    "prisma": "^6.1.0"
   }
 }
