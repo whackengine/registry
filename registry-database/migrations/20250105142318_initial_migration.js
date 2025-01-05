@@ -5,7 +5,7 @@
  */
 export const up = async (knex) => {
   return knex.schema
-    .createTable("users", table => {
+    .createTable("user", table => {
       table.bigIncrements("id");
       table.datetime("registered_at").defaultTo(knex.fn.now());
       table.boolean("admin").defaultTo(false);
@@ -14,7 +14,7 @@ export const up = async (knex) => {
       table.boolean("email_verified").notNullable();
       table.string("github_access_token", 511).notNullable();
     })
-    .createTable("api_tokens", table => {
+    .createTable("api_token", table => {
       table.bigIncrements("id");
       table.bigint("user_id");
       table.string("token").notNullable();
@@ -23,26 +23,34 @@ export const up = async (knex) => {
       table.boolean("scope_yank");
       table.string("restrict_to_packages", 512).notNullable();
     })
-    .createTable("owner_invites", table => {
+    .createTable("owner_invite", table => {
       table.bigIncrements("id");
       table.datetime("sent_at").defaultTo(knex.fn.now());
       table.bigint("package_id");
       table.bigint("invitee_user_id");
       table.bigint("invited_by_user_id");
     })
-    .createTable("packages", table => {
+    .createTable("package", table => {
       table.bigIncrements("id");
       table.string("name", 127).notNullable();
       table.string("description", 512).notNullable();
-      table.string("keywords", 512).notNullable();
-      table.string("categories", 512).notNullable();
     })
-    .createTable("owners", table => {
+    .createTable("keyword", table => {
+      table.bigIncrements("id");
+      table.bigint("package_id");
+      table.string("keyword").notNullable();
+    })
+    .createTable("category", table => {
+      table.bigIncrements("id");
+      table.bigint("package_id");
+      table.string("category").notNullable();
+    })
+    .createTable("owner", table => {
       table.bigIncrements("id");
       table.bigint("user_id");
       table.bigint("package_id");
     })
-    .createTable("package_versions", table => {
+    .createTable("package_version", table => {
       table.bigIncrements("id");
       table.string("version_number", 32).notNullable();
       table.datetime("published_at").defaultTo(knex.fn.now());
@@ -56,7 +64,7 @@ export const up = async (knex) => {
       table.datetime("downloads_this_week_at").defaultTo(knex.fn.now());
       table.bigint("downloads_this_week").defaultTo(0);
     })
-    .createTable("dependencies", table => {
+    .createTable("dependency", table => {
       table.bigIncrements("id");
       table.bigint("dependency_package_id");
       table.string("dependency_version_number", 32).notNullable();
@@ -71,10 +79,13 @@ export const up = async (knex) => {
  */
 export const down = async (knex) => {
   return knex.schema
-    .dropTable("users")
-    .dropTable("owner_invites")
-    .dropTable("packages")
-    .dropTable("owners")
-    .dropTable("package_versions")
-    .dropTable("dependencies");
+    .dropTable("user")
+    .dropTable("api_token")
+    .dropTable("owner_invite")
+    .dropTable("package")
+    .dropTable("keyword")
+    .dropTable("category")
+    .dropTable("owner")
+    .dropTable("package_version")
+    .dropTable("dependency");
 };
