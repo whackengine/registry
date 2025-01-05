@@ -44,7 +44,7 @@ export default {
     connection: process.env.DATABASE_URL,
 
     directory: "./migrations",
-    loadExtensions: [".mjs"],
+    loadExtensions: [".js"],
   },
 
   seeds: {
@@ -52,6 +52,6 @@ export default {
     connection: process.env.DATABASE_URL,
 
     directory: "./seeds",
-    loadExtensions: [".mjs"],
+    loadExtensions: [".js"],
   },
 };
