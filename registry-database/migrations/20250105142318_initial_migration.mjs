@@ -10,9 +10,20 @@ export const up = async (knex) => {
       table.datetime("registered_at").defaultTo(knex.fn.now());
       table.boolean("admin").defaultTo(false);
       table.string("fullname", 127).notNullable();
+      table.string("email", 255).notNullable();
+      table.boolean("email_verified").notNullable();
       table.string("github_access_token", 511).notNullable();
     })
-    .createTable("maintenance_invites", table => {
+    .createTable("api_tokens", table => {
+      table.bigIncrements("id");
+      table.bigint("user_id");
+      table.string("token").notNullable();
+      table.boolean("scope_change_owners");
+      table.boolean("scope_publish");
+      table.boolean("scope_yank");
+      table.string("restrict_to_packages", 512).notNullable();
+    })
+    .createTable("owner_invites", table => {
       table.bigIncrements("id");
       table.datetime("sent_at").defaultTo(knex.fn.now());
       table.bigint("package_id");
@@ -26,7 +37,7 @@ export const up = async (knex) => {
       table.string("keywords", 512).notNullable();
       table.string("categories", 512).notNullable();
     })
-    .createTable("maintainers", table => {
+    .createTable("owners", table => {
       table.bigIncrements("id");
       table.bigint("user_id");
       table.bigint("package_id");
@@ -61,9 +72,9 @@ export const up = async (knex) => {
 export const down = async (knex) => {
   return knex.schema
     .dropTable("users")
-    .dropTable("maintenance_invites")
+    .dropTable("owner_invites")
     .dropTable("packages")
-    .dropTable("maintainers")
+    .dropTable("owners")
     .dropTable("package_versions")
     .dropTable("dependencies");
 };
