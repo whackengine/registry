@@ -14,6 +14,7 @@ export const up = async (knex) => {
     })
     .createTable("maintenance_invites", table => {
       table.bigIncrements("id");
+      table.datetime("sent_at").defaultTo(knex.fn.now());
       table.bigint("package_id");
       table.bigint("invitee_user_id");
       table.bigint("invited_by_user_id");
@@ -56,5 +57,11 @@ export const up = async (knex) => {
  * @returns { Promise<void> }
  */
 export const down = async (knex) => {
-  
+  return knex.schema
+    .dropTable("users")
+    .dropTable("maintenance_invites")
+    .dropTable("packages")
+    .dropTable("maintainers")
+    .dropTable("package_versions")
+    .dropTable("dependencies");
 };
