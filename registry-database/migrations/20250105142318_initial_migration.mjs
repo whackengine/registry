@@ -40,7 +40,7 @@ export const up = async (knex) => {
       table.string("repository", 255).notNullable();
       table.binary("zip");
       table.bigint("package_id");
-      table.boolean("yanked");
+      table.boolean("yanked").defaultTo(false);
       table.bigint("downloads").defaultTo(0);
       table.datetime("downloads_this_week_at").defaultTo(knex.fn.now());
       table.bigint("downloads_this_week").defaultTo(0);
