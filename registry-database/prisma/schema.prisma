@@ -48,4 +48,5 @@ model PackageVersion {
   dependencies        PackageVersion[]         @relation("Dependency")
   dependents          PackageVersion[]         @relation("Dependency")
   yanked              Boolean                  @default(false)
+  downloads           BigInt                   @default(0)
 }
