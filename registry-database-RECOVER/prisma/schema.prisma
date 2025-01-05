@@ -16,6 +16,7 @@ datasource db {
 model User {
   id                          BigInt              @id @default(autoincrement())
   registeredAt                DateTime            @default(now())
+  admin                       Boolean             @default(false)
   fullName                    String
   githubAccessToken           String
   receivedMaintenanceInvites  MaintenanceInvite[] @relation("Invitee")
