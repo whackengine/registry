@@ -36,6 +36,8 @@ export const up = async (knex) => {
       table.string("version_number", 32).notNullable();
       table.datetime("published_at").defaultTo(knex.fn.now());
       table.string("readme", 50000).notNullable();
+      table.string("license", 64).notNullable();
+      table.string("repository", 255).notNullable();
       table.binary("zip");
       table.bigint("package_id");
       table.boolean("yanked");
