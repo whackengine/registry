@@ -1,18 +1,65 @@
-- [ ] Remove README or README.md file when publishing ZIP of a package, but still keep the readme into the package version's `readme` field.
+## Pages
+
+### View package page
+
+- [ ] Finished
+
+### Search page
+
+- [ ] Finished
+
+Reminders:
+
+- [ ] Page number
+
+## API
+
+### Log in with GitHub action
+
+- [ ] Finished
+
+### Download action
+
+- [ ] Finished
+
+Reminders:
+
 - [ ] When downloading packages, increment the `downloads` field and carefully increase the "this week" downloads number.
-- [ ] Handle packages as optional namespaces (any number of dots)
-  - [ ] Owners are inherited from the parent namespaces across all API requests.
 
-## Search action
+### Publish action
 
-## Log in with GitHub action
+- [ ] Finished
 
-## Publish action
+Reminders:
 
 - [ ] Apply limit for publishing multiple packages at a time range
+- [ ] Remove README or README.md file when publishing ZIP of a package, but still keep the readme into the package version's `readme` field.
+- [ ] Handle packages as optional namespaces (any number of dots)
+  - [ ] Owners are inherited from the parent namespaces.
 
-## Yank action
+### Yank action
 
-## Invite as owner action
+- [ ] Finished
 
-## Remove owner action
+Reminders:
+
+- [ ] Handle packages as optional namespaces (any number of dots)
+  - [ ] Owners are inherited from the parent namespaces.
+
+### Invite as owner action
+
+- [ ] Finished
+
+Reminders:
+
+- [ ] Handle packages as optional namespaces (any number of dots)
+  - [ ] Owners are inherited from the parent namespaces.
+
+### Remove owner action
+
+- [ ] Finished
+
+Reminders:
+
+- [ ] Handle packages as optional namespaces (any number of dots)
+  - [ ] Owners are inherited from the parent namespaces.
