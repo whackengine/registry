@@ -2,3 +2,17 @@
 - [ ] When downloading packages, increment the `downloads` field and carefully increase the "this week" downloads number.
 - [ ] Handle packages as optional namespaces (any number of dots)
   - [ ] Owners are inherited from the parent namespaces across all API requests.
+
+## Search action
+
+## Log in with GitHub action
+
+## Publish action
+
+- [ ] Apply limit for publishing multiple packages at a time range
+
+## Yank action
+
+## Invite as owner action
+
+## Remove owner action
