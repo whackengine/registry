@@ -1,3 +1,4 @@
 - [ ] Remove README or README.md file when publishing ZIP of a package, but still keep the readme into the package version's `readme` field.
 - [ ] When downloading packages, increment the `downloads` field and carefully increase the "this week" downloads number.
 - [ ] Handle packages as optional namespaces (any number of dots)
+  - [ ] Owners are inherited from the parent namespaces across all API requests.
