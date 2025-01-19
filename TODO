@@ -18,6 +18,15 @@ Reminders:
 
 - [ ] Finished
 
+### "Delete package" action
+
+- [ ] Finished
+
+Reminders:
+
+- [ ] Allow only administrators to delete packages.
+- [ ] Delete subpackages if they are under the package to be deleted.
+
 ### Download action
 
 - [ ] Finished
