@@ -1,4 +1,3 @@
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -30,6 +29,17 @@ export const up = async (knex) => {
       table.bigint("invitee_user_id");
       table.bigint("invited_by_user_id");
     })
+    .createTable("scope_owner_invite", table => {
+      table.bigIncrements("id");
+      table.datetime("sent_at").defaultTo(knex.fn.now());
+      table.bigint("scope_id");
+      table.bigint("invitee_user_id");
+      table.bigint("invited_by_user_id");
+    })
+    .createTable("scope", table => {
+      table.bigIncrements("id");
+      table.string("name", 127).notNullable();
+    })
     .createTable("package", table => {
       table.bigIncrements("id");
       table.string("name", 127).notNullable();
@@ -49,6 +59,11 @@ export const up = async (knex) => {
       table.bigIncrements("id");
       table.bigint("user_id");
       table.bigint("package_id");
+    })
+    .createTable("scope_owner", table => {
+      table.bigIncrements("id");
+      table.bigint("user_id");
+      table.bigint("scope_id");
     })
     .createTable("package_version", table => {
       table.bigIncrements("id");
@@ -82,7 +97,9 @@ export const down = async (knex) => {
     .dropTable("user")
     .dropTable("api_token")
     .dropTable("owner_invite")
+    .dropTable("scope_owner_invite")
     .dropTable("package")
+    .dropTable("scope")
     .dropTable("keyword")
     .dropTable("category")
     .dropTable("owner")
